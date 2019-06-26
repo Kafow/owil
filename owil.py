@@ -7,10 +7,14 @@ import json
 
 client = commands.Bot(command_prefix='-')
 
+f = open("key.txt", "r")
+keys = f.read().split(';')
+f.close()
+
 ##### tokens ####
-TOKEN = ''
-BLIZZARDID = ''
-BLIZZARDSECRET = ''
+TOKEN = keys[0]
+BLIZZARDID = keys[1]
+BLIZZARDSECRET = keys[2]
 ######       #####
 
 
