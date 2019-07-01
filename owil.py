@@ -4,6 +4,7 @@ from discord.ext import commands
 import requests
 from requests.auth import HTTPBasicAuth
 import json
+import re
 
 client = commands.Bot(command_prefix='-')
 
@@ -36,7 +37,7 @@ async def verify(ctx):
     embed=discord.Embed(title="Please log in using this link and copy and send the code you have been given", url="https://eu.battle.net/oauth/authorize?access_type=online&client_id=9653cd79ff76478d97a54fa70c110ceb&redirect_uri=https://localhost&response_type=code&state=")
     await ctx.message.author.send(embed = embed)
     def check(m):
-        return m.author == ctx.message.author
+        return m.author == ctx.message.author and re.search("^EU", m.content)
 
     msg  = await client.wait_for("message", check= check)
     print (msg.content)
